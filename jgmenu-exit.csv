@@ -1,0 +1,3 @@
+Exit BSPWM,bspc quit
+Reboot,systemctl reboot
+Shutdown,systemctl poweroff
