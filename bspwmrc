@@ -3,6 +3,7 @@
 # Applications start with BSPWM
 (SXHKD_SHELL=$(which sh) sxhkd)&
 jgmenu --hide-on-startup --center &
+polybar -r main &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
