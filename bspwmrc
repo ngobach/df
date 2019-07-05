@@ -4,6 +4,7 @@
 (SXHKD_SHELL=$(which sh) sxhkd)&
 jgmenu --hide-on-startup --center &
 polybar -r main &
+dunst &> /dev/null &
 
 bspc monitor -d I II III IV
 
