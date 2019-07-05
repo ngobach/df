@@ -5,7 +5,7 @@
 jgmenu --hide-on-startup --center &
 polybar -r main &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV
 
 bspc config border_width 2
 bspc config window_gap 8
@@ -15,4 +15,4 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 # Application rules
-bspc rule -a Chromium desktop='^2'
+bspc rule -a Chromium desktop='^1'
