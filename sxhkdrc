@@ -4,17 +4,19 @@
 
 # terminal emulator
 super + Return
-	alacritty
+	termite
 
 # program launcher
 super + @space
-	jgmenu_run
+	rofi -show drun
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+# Power menu
 super + @Pause
-	jgmenu --vsimple --center --csv-file=${HOME}/.remastered/jgmenu-exit.csv
+	clearine
 #
 # bspwm hotkeys
 #
