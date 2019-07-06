@@ -6,12 +6,13 @@ foreground-alt = #9EA7A6
 primary = #A03B1E
 secondary = #C59820
 alert = #B02F30
+grey = #353b48
 
 [bar/main]
 width = 100%
 height = 24
 radius = 0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -34,9 +35,9 @@ font-3 = Font Awesome 5 Free:size=9;1
 font-4 = Font Awesome 5 Free:style=Solid:size=8;1
 font-5 = Hack Nerd Font:size=10
 
-modules-left = bspwm
-modules-center = 
-modules-right = filesystem pulseaudio memory cpu wlan eth battery temperature date
+modules-left = start bspwm
+modules-center = date
+modules-right = filesystem pulseaudio memory cpu wlan eth battery temperature power
 
 tray-position = right
 tray-padding = 2
@@ -55,6 +56,30 @@ scroll-down = bspwm-deskprev
 
 cursor-click = pointer
 ; cursor-scroll = ns-resize
+
+;; My modules
+
+[module/start]
+type = custom/text
+content = 
+content-padding = 4
+;content-underline = ${colors.primary}
+content-foreground = ${colors.primary}
+click-left = rofi -show drun
+
+[module/power]
+type = custom/text
+content = 
+content-padding = 1
+content-foreground = ${colors.alert}
+click-left = clearine
+
+[module/r]
+type = custom/text
+content = 
+content-padding = 1
+content-foreground = ${colors.grey}
+
 
 [module/xwindow]
 type = internal/xwindow
@@ -80,15 +105,16 @@ label-indicator-underline = ${colors.secondary}
 type = internal/fs
 interval = 25
 mount-0 = /
-label-mounted =  %percentage_used%%
+label-mounted =  %mountpoint%: %used%/%total% (%percentage_used%%)
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
 type = internal/bspwm
 label-focused = %index%
+label-focused-foreground = ${colors.primary}
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+;label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 label-occupied = %index%
 label-occupied-padding = 2
@@ -180,7 +206,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+;format-underline = #f90000
 label = %percentage:2%%
 
 [module/memory]
@@ -188,7 +214,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+;format-underline = #4bffdc
 label = %percentage_used%%
 
 [module/wlan]
@@ -218,7 +244,7 @@ type = internal/network
 interface = enp8s0
 interval = 3.0
 
-format-connected-underline = #55aa55
+;format-connected-underline = #55aa55
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -241,7 +267,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+; format-underline = #0a6cf5
 
 label = %date% %time%
 
@@ -339,7 +365,7 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+; format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
