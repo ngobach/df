@@ -28,16 +28,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = siji:pixelsize=10;1
+font-0 = monospace:size=8:weight=bold;1
 font-1 = Noto Sans Display:size=8:weight=bold;1
 font-2 = Font Awesome 5 Brands:size=10;1
 font-3 = Font Awesome 5 Free:size=9;1
 font-4 = Font Awesome 5 Free:style=Solid:size=8;1
-font-5 = Hack Nerd Font:size=10
 
 modules-left = start bspwm
 modules-center = date
-modules-right = filesystem pulseaudio memory cpu wlan eth battery temperature power
+modules-right = filesystem pulseaudio cpu memory wlan eth battery temperature power
 
 tray-position = right
 tray-padding = 2
@@ -62,7 +61,7 @@ cursor-click = pointer
 [module/start]
 type = custom/text
 content = 
-content-padding = 4
+content-padding = 0
 ;content-underline = ${colors.primary}
 content-foreground = ${colors.primary}
 click-left = rofi -show drun
