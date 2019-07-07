@@ -1,0 +1,10 @@
+bspwm
+sxhkd
+polybar
+compton (tryone)
+betterlockscreen
+rofi
+dunst
+feh
+clearine
+termite
