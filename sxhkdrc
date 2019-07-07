@@ -17,6 +17,10 @@ super + Escape
 # Power menu
 super + @Pause
 	clearine
+# Lock
+super + l
+	betterlockscreen -l blur
+
 #
 # bspwm hotkeys
 #
