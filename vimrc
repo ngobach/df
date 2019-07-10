@@ -13,9 +13,11 @@ Plugin 'tomasr/molokai'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'fatih/vim-go'
 call vundle#end()
 filetype plugin indent on
 
 set ls=2 nu ts=4 sw=0 sts=0 et
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'dracula'
+syntax on
