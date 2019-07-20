@@ -1,0 +1,15 @@
+# This file define symbol link targets for install command
+
+declare -A LINKS_TARGETS=(
+    ["alacritty.yml"]=".config/alacritty/alacritty.yml"
+    ["bspwmrc"]=".config/bspwm/bspwmrc"
+    ["clearine.conf"]=".config/clearine.conf"
+    ["compton.conf"]=".config/compton.conf"
+    ["dunstrc"]=".config/dunst/dunstrc"
+    ["gtk.css"]=".config/gtk-3.0/gtk.css"
+    ["polybar"]=".config/polybar/config"
+    ["sxhkdrc"]=".config/sxhkd/sxhkdrc"
+    ["termite"]=".config/termite/config"
+    ["vimrc"]=".vimrc;.config/nvim/init.vim"
+    ["xinitrc"]=".xinitrc"
+)

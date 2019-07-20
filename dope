@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+DOC="\
+Dope - Multi-purpose tool
+----
+
+Usage:
+    dope {command}
+
+help
+    Print this help
+install
+    Install dope utility to /usr/local/bin/dope
+link
+    Symlink configuration files
+"
+
+set -e
+SELF=$(readlink -f $0)
+ROOT=$(dirname $SELF)
+INSTALL_TARGET=/usr/local/bin/dope
+source $ROOT/links
+
+if [[ $# == 0 ]]; then
+    set -- "help"
+fi
+
+check_root () {
+    if [[ $(id -u) != 0 ]]; then
+        printf "Error: Root permission is required!\n"
+        exit 1
+    fi
+}
+
+case $1 in
+    help)
+        echo -n "$DOC"
+        ;;
+    install)
+        check_root
+        mkdir -p "$(dirname $INSTALL_TARGET)"
+        ln -sf $SELF $INSTALL_TARGET
+        echo "dope is installed to $INSTALL_TARGET"
+        ;;
+    link)
+        echo "Using home directory: ${HOME}"
+        for file in "${!LINKS_TARGETS[@]}"; do
+            IFS=";" targets=(${LINKS_TARGETS[$file]})
+            for target in "${targets[@]}"; do
+                target="${HOME}/${target}"
+                printf "Linking file %s to %s\n" "$file" "$target"
+                mkdir -p "$(dirname "$target")"
+                ln -sf "$ROOT/$file" "$target"
+            done
+        done
+        ;;
+    *)
+        echo "Invalid command $1"
+        echo "Use \"dope help\" for help content"
+        ;;
+esac
