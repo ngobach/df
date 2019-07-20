@@ -6,6 +6,9 @@ fi
 if [ -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]; then
   /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 fi
+if hash wmname; then
+  wmname LG3D
+fi
 xsetroot -cursor_name left_ptr
 compton -b 
 feh --bg-fill -z ~/Pictures/Wallpapers
