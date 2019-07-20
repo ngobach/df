@@ -2,7 +2,6 @@
 
 # Applications start with BSPWM
 (SXHKD_SHELL=$(which sh) sxhkd)&
-jgmenu --hide-on-startup --center &
 polybar -r main &
 dunst &> /dev/null &
 
