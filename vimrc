@@ -19,5 +19,5 @@ filetype plugin indent on
 
 set ls=2 nu ts=4 sw=0 sts=0 et
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'dracula'
+let g:airline_theme = 'cobalt2'
 syntax on
