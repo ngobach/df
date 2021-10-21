@@ -2,3 +2,4 @@
 alias ysn="yarn start:new"
 alias ysl="yarn start:local"
 alias choco="choco.exe"
+export EDITOR="vim"
