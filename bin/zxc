@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 BASE_DIR="$(cd "$(dirname "$0")"; cd ..; pwd -P)"
+BASE_NAME="$(basename $0)"
 
-cpu_run() {
+cmd_run() {
 	if [[ -z "$1" ]]; then
 		echo "Missing input file"
 		return 255
@@ -20,7 +21,7 @@ cpu_run() {
 	rm "$out_file"
 }
 
-cpu_create() {
+cmd_create() {
 	if [[ -z "$1" ]]; then
 		echo "Missing output file"
 		return 255
@@ -35,14 +36,14 @@ cpu_create() {
 	echo "$1 created!"
 }
 
-cpu_usage() {
+cmd_usage() {
 	cat <<DOC
 Create blank CPP file:
-  cpu -c hello.cpp
+  $BASE_NAME -c hello.cpp
 Run CPP file:
-  cpu -r hello.cpp
+  $BASE_NAME -r hello.cpp
 Usage:
-  cpu -u
+  $BASE_NAME -u
 DOC
 }
 
@@ -53,13 +54,15 @@ fi
 while getopts ":c::r:u" OPT; do
 	case $OPT in
 		c)
-			cpu_create $OPTARG
+			cmd_create $OPTARG
 			;;
 		r)
-			cpu_run $OPTARG
+			cmd_run $OPTARG
 			;;
 		u|*)
-			cpu_usage
+			cmd_usage
 			;;
 	esac
 done
+
+shift $((OPTIND - 1))
