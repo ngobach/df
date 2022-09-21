@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+BASE_DIR="$(cd "$(dirname "$0")"; cd ..; pwd -P)"
+
+cpu_run() {
+	if [[ -z "$1" ]]; then
+		echo "Missing input file"
+		return 255
+	fi
+
+	out_file=$(mktemp)
+	echo -e "-- Building $1"
+	g++ -O3 -Wno-unused-result -o "$out_file" "$1"
+	if [[ $? != 0 ]]; then
+		echo "Compilation failed"
+		return $?
+	fi
+	echo -e "-- Running"
+	"$out_file" || echo "Program exited with $?"
+	rm "$out_file"
+}
+
+cpu_create() {
+	if [[ -z "$1" ]]; then
+		echo "Missing output file"
+		return 255
+	fi
+
+	if [[ -f "$1" ]]; then
+		echo "$1 is existed!"
+		return 255
+	fi
+
+	cp "$BASE_DIR/blank.cpp" $1
+	echo "$1 created!"
+}
+
+cpu_usage() {
+	cat <<DOC
+Create blank CPP file:
+  cpu -c hello.cpp
+Run CPP file:
+  cpu -r hello.cpp
+Usage:
+  cpu -u
+DOC
+}
+
+if [ "$#" = "0" ]; then
+	set -- "-u"
+fi
+
+while getopts ":c::r:u" OPT; do
+	case $OPT in
+		c)
+			cpu_create $OPTARG
+			;;
+		r)
+			cpu_run $OPTARG
+			;;
+		u|*)
+			cpu_usage
+			;;
+	esac
+done
