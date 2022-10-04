@@ -55,14 +55,18 @@ while getopts ":c::r:u" OPT; do
 	case $OPT in
 		c)
 			cmd_create $OPTARG
+			exit $?
 			;;
 		r)
 			cmd_run $OPTARG
+			exit $?
 			;;
 		u|*)
 			cmd_usage
+			exit $?
 			;;
 	esac
 done
 
-shift $((OPTIND - 1))
+# shift $((OPTIND - 1))
+cmd_usage
